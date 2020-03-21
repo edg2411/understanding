@@ -1,24 +1,32 @@
-// console.log('holamundo!');
-
-// // var person = new Object();
-// var person = {};
-
-// person['firstname'] = 'ezequiel';
-// person['lastname'] = 'di giulio';
-
-// propertyFirstName = 'firstname';
-// propertyLastName = 'lastname';
-
-// console.log(person);
-// console.log(person[propertyFirstName]);
-
-// console.log(person.firstname);
-
-
-var english = {
-    greetings: {
-        basic: 'hello!'
-    }
+// js object literal sintax opt
+var objectLiteral = {
+    propName: 'eze',
+    isProg: true
 };
 
-console.log(english);
+console.log(objectLiteral);
+
+// js object literal sintax opt
+var objectLiteral2 = {
+    propName: 'eze',
+    isProg: true
+};
+
+console.log(objectLiteral2);
+
+// data via internet
+/* 
+<object>
+    <propName>eze</propName>
+    <isProg>true</isProg>
+</object>
+ */
+
+// JSON: Java Script Object Notation
+
+console.log(JSON.stringify(objectLiteral));
+
+var jsonValue = JSON.parse('{"propName": "eze","isProg": true}');
+console.log(jsonValue);
+
+// JSON != JS OBJECT (LITERAL)
