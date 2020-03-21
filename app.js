@@ -1,20 +1,26 @@
-var arr1 = new Array(); // una forma de declararlo
+function greet(firstname, lastname, language) {
+    // function greet(firstname, lastname, language, ...other) {    // me parece que no se usa esto!
 
-var arr = [ // otra forma de declararlo
-    1,
-    false,
-    { name: 'eze' },
-    function(name) {
-        var greeting = 'hello ';
-        console.log(greeting + name);
-    },
-    "hi"
-];
+    language = language || 'en';
 
-// distintos elementos del array no necesariamente tienen que ser del mismo tipo
+    if (arguments.length === 0) {
+        console.log('no params');
+        console.log('---------');
+        return;
+    }
 
-console.log(arr);
+    console.log(firstname);
+    console.log(lastname);
+    console.log(language);
 
-arr[3](arr[2].name);
+    console.log(arguments); //  no esta declarada por mi en ningun lado! (array-like)
+    console.log('arg 0: ' + arguments[0]);
 
-// 3 es el indice de la funcion, 2 el indice del objeto y .name el valor que contiene (value-pair)
+    console.log('------');
+}
+
+greet();
+greet('eze');
+greet('eze', 'dg');
+greet('eze', 'dg', 'esp');
+greet('eze', 'dg', 'esp', 'esto es un parametro extra!');
