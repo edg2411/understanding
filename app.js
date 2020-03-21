@@ -1,45 +1,39 @@
-// first class functions    en js las funciones son objetos y punto
+//  by value
 
-console.log('normal');
+var a = 3;
+var b;
 
+b = a;
+a = 2;
 
-// greet(); // esto funciona 
+console.log(a);
+console.log(b);
 
-//statement
-function greet() {
-    console.log('hi');
+// by reference ( all obj including func)
+
+var c = { greeting: 'hi' };
+var d;
+
+d = c;
+c.greeting = 'hello'; // mutate
+
+console.log(c);
+console.log(d);
+
+// by ref paramenters
+
+function changeGreeting(obj) {
+    obj.greeting = 'Hola';
 }
 
-greet(); // esto funciona 
+changeGreeting(d);
 
-console.log(greet());
+console.log(c);
+console.log(d);
 
-console.log('anonima');
+// equals (=) sets uop new mem space (new address)
 
+c = { greeting: 'howdy' }; // crea un espacio para howdy y luego apunta c a esa direccion
 
-// anonymousGreet(); // esto no funciona!
-
-// la variable esta hoisteada pero no tiene nada cargado (undefined) y por eso tira error al poner ()
-
-//expression
-var anonymousGreet = function() {
-    console.log('hi');
-}
-
-anonymousGreet(); // esto funciona 
-
-console.log(anonymousGreet);
-console.log(anonymousGreet());
-
-// nota: pasa lo mismo del undefined
-
-
-function log(a) {
-    a();
-}
-
-//function expression
-
-log(function() {
-    console.log('hi');
-});
+console.log(c);
+console.log(d);
