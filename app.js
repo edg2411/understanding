@@ -1,50 +1,9 @@
-// using f statement
+// IIFE & safe code
+(function(global, name) {
+    var greeting = 'hola '; // se crea en un nuevo exec context, no en el global..
+    global.greeting = ' a proposito hola'; // estoy a proposito modificando una variable que no esta en este archivo
+    console.log(greeting + ' ' + name);
+})(window, 'eze'); // con los () puedo embeber toda mi funcion y evitar que colisione con otros archivos
+// pq window es el obj global en el browser
 
-function greet(name) {
-    console.log('hola ' + name);
-}
-
-greet('eze');
-
-// using f expression
-
-var greetF = function(name) {
-    console.log('hola ' + name);
-};
-
-greetF('eze');
-
-// using IIFE(immediately invoked function expression)
-
-var greeting = function(name) {
-    console.log('hola ' + name);
-}();
-
-var greeting2 = function(name) {
-    return 'hola ' + name;
-}('eze');
-// console.log(greeting2());    // esto tira error pq greeting2 ahora tiene un string!
-console.log(greeting2);
-
-3;
-'hola';
-
-{
-    name: 'eze'
-};
-
-// no funciona pq lo reconoce como un f statement y no puede no tener nombre! por eso token(
-// function(name) {
-//     return 'hello' + name;
-// };
-
-// el engine reconoce que lo que esta entre () debe ser una expresion
-
-var firstname = 'eze';
-
-(function(name) {
-    // return 'hello' + name;
-    var greeting = 'inside IIFE: hello ';
-    console.log(greeting + name);
-}(firstname)); // de hecho si no la invoco el vsc se queja
-// })(firstname); // tambien es valido con los () de invocacion fuera de los () de wrapping
+console.log(greeting);

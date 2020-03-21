@@ -1,0 +1,1 @@
+var greeting = 'hello '; // esto provocaria un problema pero como uso IIFE en app.js no sucede nada
