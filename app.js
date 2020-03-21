@@ -1,26 +1,26 @@
+// en js el overload o sobrecarga de funciones no es igual que en otros lenguajes
+// pero al tener first class functions se puede manejar 
+// esta e suna forma de salvar problemas, no es la mejor ni la unica!
+
 function greet(firstname, lastname, language) {
-    // function greet(firstname, lastname, language, ...other) {    // me parece que no se usa esto!
 
-    language = language || 'en';
+    language = language || 'en'; // esto sirve tambien!
 
-    if (arguments.length === 0) {
-        console.log('no params');
-        console.log('---------');
-        return;
+    if (language === 'en') {
+        console.log('hello ' + firstname + ' ' + lastname);
     }
-
-    console.log(firstname);
-    console.log(lastname);
-    console.log(language);
-
-    console.log(arguments); //  no esta declarada por mi en ningun lado! (array-like)
-    console.log('arg 0: ' + arguments[0]);
-
-    console.log('------');
+    if (language === 'es') {
+        console.log('hola ' + firstname + ' ' + lastname);
+    }
 }
 
-greet();
-greet('eze');
-greet('eze', 'dg');
-greet('eze', 'dg', 'esp');
-greet('eze', 'dg', 'esp', 'esto es un parametro extra!');
+function greetEnglish(firstname, lastname) {
+    greet(firstname, lastname, 'en');
+}
+
+function greetSpanish(firstname, lastname) {
+    greet(firstname, lastname, 'es');
+}
+
+greetEnglish('eze', 'dg');
+greetSpanish('eze', 'dg');
