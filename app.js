@@ -1,56 +1,47 @@
-// call apply bind
+// functional programming
 
-var person = {
-    firstname: 'eze',
-    lastname: 'dg',
-    getFullName: function() {
-        var fullname = this.firstname + ' ' + this.lastname;
-        return fullname;
+// es importante no mutar cosas en estos casos sino crear cosas nuevas!
+
+function mapForEach(arr, fn) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+        newArr.push(
+            fn(arr[i])
+        );
     }
-};
-
-var logName = function(lang1, lang2) {
-    console.log('logged: ' + this.getFullName());
-    console.log('args: ' + lang1 + ' ' + lang2);
-    console.log('---------');
-    // }.bind(person);  // salva error en logName
-};
-
-var logPersonName = logName.bind(person); // copia la funcion 
-
-// logName(); // da error
-
-logPersonName('en');
-
-logName.call(person, 'en', 'es'); // ejecuta la funcion
-logName.apply(person, ['en', 'es']); // ejecuta la funcion igual que call pero los parametros se pasan como array
-
-(function(lang1, lang2) {
-    console.log('logged: ' + this.getFullName());
-    console.log('args: ' + lang1 + ' ' + lang2);
-    console.log('---------');
-}).apply(person, ['en', 'es']);
-
-// f borrowing
-
-var person2 = {
-    firstname: 'juan',
-    lastname: 'perez'
-};
-
-console.log(person.getFullName.apply(person2)); // acordate que no llamas a la funcion getFullName
-// estas usando un metodo de un objeto, en otro objeto
-
-// f currying
-
-function multiply(a, b) {
-    return a * b;
+    return newArr;
 }
 
-var multipleByTwo = multiply.bind(this, 2); //  estas creando una copia de la funcion con parametros preseteados
-//--------------------------------obj,param1,param2 ->  el param2 (b) no lo estoy pasando
-// estas fijando a = 2
+var arr1 = [1, 2, 3];
+console.log(arr1);
 
-multipleByTwo(3); // esto va a hacer 2*3 
+var arr2 = mapForEach(arr1, function(item) {
+    return item * 2;
+});
+console.log(arr2);
 
-console.log(multipleByTwo(3));
+var arr3 = mapForEach(arr1, function(item) {
+    return item < 2;
+});
+console.log(arr3);
+
+var arr4 = mapForEach(arr1, function(item) {
+    return item === 2;
+});
+console.log(arr4);
+
+var checkPastLimit = function(limiter, item) {
+    return item > limiter;
+};
+
+var arr5 = mapForEach(arr1, checkPastLimit.bind(this, 1));
+console.log(arr5);
+
+var checkPastLimitSimplified = function(limiter) {
+    return function(limiter, item) {
+        return item > limiter;
+    }.bind(this, limiter);
+};
+
+var arr6 = mapForEach(arr1, checkPastLimitSimplified(1));
+console.log(arr6);
