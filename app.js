@@ -1,20 +1,26 @@
-String.prototype.isLengthGreaterThan = function(limit) {
-    return this.length > limit;
+// polyfill
+if (!Object.create) {
+    Object.create = function(o) {
+        if (arguments.length > 1) {
+            throw new Error('Object.create implementation' +
+                ' only accepts the first parameter.');
+        }
+
+        function F() {}
+        F.prototype = o;
+        return new F();
+    };
 }
 
-console.log('ezequiel'.isLengthGreaterThan(3));
-
-Array.prototype.myCustomeFeature = 'cool';
-
-arr = ['eze', 'juan', 'perez'];
-
-for (var prop in arr) {
-    console.log(prop + ': ' + arr[prop]);
-}
-for (var i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
+var person = {
+    firstname: 'Default',
+    lastname: 'Default',
+    greet: function() {
+        return 'Hi ' + this.firstname;
+    }
 }
 
-// de hecho iterar en objetos nunca es conveniente, y como los arrays son objetos en js no lo deberias hacer
-// excepto de la manera clasica donde te aseguras con arr.length 
-// de no pasarte al prototipo u otras cosas dentro del obj array
+var john = Object.create(person);
+john.firstname = 'John';
+john.lastname = 'Doe';
+console.log(john);
