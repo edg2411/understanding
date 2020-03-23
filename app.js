@@ -1,26 +1,27 @@
-// polyfill
-if (!Object.create) {
-    Object.create = function(o) {
-        if (arguments.length > 1) {
-            throw new Error('Object.create implementation' +
-                ' only accepts the first parameter.');
-        }
+// "use strict"
 
-        function F() {}
-        F.prototype = o;
-        return new F();
-    };
-}
+// puede usarse al principio del archivo o al principio de una funcion
+// es un extra, no todos los engines resuelven igual
 
-var person = {
-    firstname: 'Default',
-    lastname: 'Default',
-    greet: function() {
-        return 'Hi ' + this.firstname;
-    }
-}
+var a = {
+    firstname: 'eze',
+    lastname: 'dg',
 
-var john = Object.create(person);
-john.firstname = 'John';
-john.lastname = 'Doe';
-console.log(john);
+};
+console.log(a);
+console.log(typeof a);
+
+var b = JSON.stringify(a);
+
+console.log(b);
+console.log(typeof b);
+
+var c = JSON.parse(b);
+
+console.log(c);
+console.log(typeof c);
+
+var e = function() {}
+
+console.log(typeof e);
+console.log(e instanceof Object);
