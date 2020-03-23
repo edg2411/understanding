@@ -1,25 +1,20 @@
-function Person(firstname, lastname) {
-    console.log(this);
-    this.firstname = firstname;
-    this.lastname = lastname;
-    console.log('this function is invoked');
-    // this.getFullName = function() {
-    //     return this.firstname + ' ' + this.lastname;
-    // };
+String.prototype.isLengthGreaterThan = function(limit) {
+    return this.length > limit;
 }
 
-var john = new Person('john', 'doe');
-console.log(john);
-var jane = new Person('jane', 'doe');
-console.log(jane);
+console.log('ezequiel'.isLengthGreaterThan(3));
 
-Person.prototype.getFullName = function() {
-    return this.firstname + ' ' + this.lastname;
-};
-// Person.getFullName2 = function() {
-//     return this.firstname + ' ' + this.lastname;
-// };
+Array.prototype.myCustomeFeature = 'cool';
 
-// console.log(john.getFullName());
+arr = ['eze', 'juan', 'perez'];
 
-console.log(john);
+for (var prop in arr) {
+    console.log(prop + ': ' + arr[prop]);
+}
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+
+// de hecho iterar en objetos nunca es conveniente, y como los arrays son objetos en js no lo deberias hacer
+// excepto de la manera clasica donde te aseguras con arr.length 
+// de no pasarte al prototipo u otras cosas dentro del obj array

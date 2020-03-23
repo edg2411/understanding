@@ -1,54 +1,11 @@
-// functional programming
-
-// es importante no mutar cosas en estos casos sino crear cosas nuevas!
-
-function mapForEach(arr, fn) {
-    var newArr = [];
-    for (var i = 0; i < arr.length; i++) {
-        newArr.push(
-            fn(arr[i])
-        );
-    }
-    return newArr;
+rnum = 1;
+fnum = new Number(1);
+if(rnum == fnum){
+    console.log('son "iguales"')
+}
+if(rnum !== fnum){
+    console.log('no son realmente iguales')
 }
 
-var arr1 = [1, 2, 3];
-console.log(arr1);
-
-var arr2 = mapForEach(arr1, function(item) {
-    return item * 2;
-});
-console.log(arr2);
-
-var arr3 = mapForEach(arr1, function(item) {
-    return item < 2;
-});
-console.log(arr3);
-
-var arr4 = mapForEach(arr1, function(item) {
-    return item === 2;
-});
-console.log(arr4);
-
-var checkPastLimit = function(limiter, item) {
-    return item > limiter;
-};
-
-var arr5 = mapForEach(arr1, checkPastLimit.bind(this, 1));
-console.log(arr5);
-
-var checkPastLimitSimplified = function(limiter) {
-    return function(limiter, item) {
-        return item > limiter;
-    }.bind(this, limiter);
-};
-
-var arr6 = mapForEach(arr1, checkPastLimitSimplified(1));
-console.log(arr6);
-
-// underscore.js
-var arr7 = _.map(arr1, function(item){return item*3});
-console.log(arr7);
-
-var arr8 = _.filter([1,2,3,4,5,6,7,8], function(item){return item%2 === 0});
-console.log(arr8);
+console.log(rnum);
+console.log(fnum);
