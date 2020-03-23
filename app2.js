@@ -1,24 +1,54 @@
-// CLOSURES 2
-// esto cambia desde el es6 donde se usa let!
+// functional programming
 
-function buildFunctions2() {
-    var arr = [];
-    for (var i = 0; i < 3; i++) {
-        arr.push(
-            (function(j) {
-                return function() {
-                    console.log(j);
-                }
-            }(i))
+// es importante no mutar cosas en estos casos sino crear cosas nuevas!
+
+function mapForEach(arr, fn) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+        newArr.push(
+            fn(arr[i])
         );
     }
-
-    return arr;
+    return newArr;
 }
 
-var fs = buildFunctions2();
-console.log('app2');
-fs[0]();
-fs[1]();
-fs[2]();
-console.log('-----');
+var arr1 = [1, 2, 3];
+console.log(arr1);
+
+var arr2 = mapForEach(arr1, function(item) {
+    return item * 2;
+});
+console.log(arr2);
+
+var arr3 = mapForEach(arr1, function(item) {
+    return item < 2;
+});
+console.log(arr3);
+
+var arr4 = mapForEach(arr1, function(item) {
+    return item === 2;
+});
+console.log(arr4);
+
+var checkPastLimit = function(limiter, item) {
+    return item > limiter;
+};
+
+var arr5 = mapForEach(arr1, checkPastLimit.bind(this, 1));
+console.log(arr5);
+
+var checkPastLimitSimplified = function(limiter) {
+    return function(limiter, item) {
+        return item > limiter;
+    }.bind(this, limiter);
+};
+
+var arr6 = mapForEach(arr1, checkPastLimitSimplified(1));
+console.log(arr6);
+
+// underscore.js
+var arr7 = _.map(arr1, function(item){return item*3});
+console.log(arr7);
+
+var arr8 = _.filter([1,2,3,4,5,6,7,8], function(item){return item%2 === 0});
+console.log(arr8);

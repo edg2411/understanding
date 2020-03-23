@@ -1,47 +1,25 @@
-// functional programming
-
-// es importante no mutar cosas en estos casos sino crear cosas nuevas!
-
-function mapForEach(arr, fn) {
-    var newArr = [];
-    for (var i = 0; i < arr.length; i++) {
-        newArr.push(
-            fn(arr[i])
-        );
-    }
-    return newArr;
+function Person(firstname, lastname) {
+    console.log(this);
+    this.firstname = firstname;
+    this.lastname = lastname;
+    console.log('this function is invoked');
+    // this.getFullName = function() {
+    //     return this.firstname + ' ' + this.lastname;
+    // };
 }
 
-var arr1 = [1, 2, 3];
-console.log(arr1);
+var john = new Person('john', 'doe');
+console.log(john);
+var jane = new Person('jane', 'doe');
+console.log(jane);
 
-var arr2 = mapForEach(arr1, function(item) {
-    return item * 2;
-});
-console.log(arr2);
-
-var arr3 = mapForEach(arr1, function(item) {
-    return item < 2;
-});
-console.log(arr3);
-
-var arr4 = mapForEach(arr1, function(item) {
-    return item === 2;
-});
-console.log(arr4);
-
-var checkPastLimit = function(limiter, item) {
-    return item > limiter;
+Person.prototype.getFullName = function() {
+    return this.firstname + ' ' + this.lastname;
 };
+// Person.getFullName2 = function() {
+//     return this.firstname + ' ' + this.lastname;
+// };
 
-var arr5 = mapForEach(arr1, checkPastLimit.bind(this, 1));
-console.log(arr5);
+// console.log(john.getFullName());
 
-var checkPastLimitSimplified = function(limiter) {
-    return function(limiter, item) {
-        return item > limiter;
-    }.bind(this, limiter);
-};
-
-var arr6 = mapForEach(arr1, checkPastLimitSimplified(1));
-console.log(arr6);
+console.log(john);
