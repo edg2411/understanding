@@ -1,27 +1,11 @@
-// "use strict"
+var g = G$('eze', 'di giulio');
 
-// puede usarse al principio del archivo o al principio de una funcion
-// es un extra, no todos los engines resuelven igual
+// console.log(g);
 
-var a = {
-    firstname: 'eze',
-    lastname: 'dg',
+g.greet().setLang('es').greet(true);
 
-};
-console.log(a);
-console.log(typeof a);
-
-var b = JSON.stringify(a);
-
-console.log(b);
-console.log(typeof b);
-
-var c = JSON.parse(b);
-
-console.log(c);
-console.log(typeof c);
-
-var e = function() {}
-
-console.log(typeof e);
-console.log(e instanceof Object);
+$('#login').click(function() {
+    var loginGtr = G$('john', 'doe');
+    $('#logindiv').hide();
+    loginGtr.setLang($('#lang').val()).HTMLGreeting('#greeting', true).log();
+});
